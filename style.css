@@ -1,3 +1,10 @@
+:root {
+    --player1: #be292944;
+    --player2: rgb(95, 134, 36);
+    --player3: rgb(224, 108, 13); 
+    --player4: rgb(91, 22, 91);
+}
+
 #gameboard {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -57,4 +64,17 @@ body {
 }
 h1 {
     color: #333;
+}
+
+.player1 {
+    background-color: var(--player1) !important;
+}
+.player2 {
+    background-color: var(--player2) !important;
+}
+.player3 {
+    background-color: var(--player3) !important;
+}
+.player4 {
+    background-color: var(--player4) !important;
 }
