@@ -21,7 +21,8 @@ correctAnswersCount = 0;
 lastflipped = null;
 allflipped = false;
 turn = 0; 
-playercount = 2; 
+playercount = 4;
+score = new Array(playercount).fill(0);
 
 function flipCard() {
     const card = this;
@@ -35,10 +36,12 @@ function flipCard() {
     console.log(flipped.slice(0, 5));
     if (!lastflipped) {
         lastflipped = flipped;         
-    } else if(lastflipped.slice(0, 5) == flipped.slice(0, 5)) {
+    } else if(lastflipped.slice(0, 6) == flipped.slice(0, 6)) {
         card.classList.add('player'+(turn+1));
         document.getElementById(lastflipped).classList.add('player'+(turn+1));
         samecard();
+        score[turn] ++;
+        updateScoreboard()
         lastflipped = null;
     } 
     else {
@@ -70,3 +73,11 @@ turn = 0;
     }
     console.log('Player turn: ' + turn);
  }
+
+ function updateScoreboard() {
+    let scoreBoard = "";
+    for (let i = 0; i < playercount; i++) {
+        scoreBoard += "Player " + (i + 1) + ": " + score[i] + " <br>";
+    }
+    document.getElementById('scoreValue').innerHTML = scoreBoard;
+}
