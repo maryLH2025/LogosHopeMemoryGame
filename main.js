@@ -69,15 +69,27 @@ function notsamecard() {
  function nextturn (){
     turn ++;
     if (turn >= playercount){
-turn = 0;
+        turn = 0;
     }
     console.log('Player turn: ' + turn);
+    let color;
+    switch (turn) {
+        case 0:
+            color = 'var(--player1-light)'; break;
+        case 1:
+            color = 'var(--player2-light)'; break;
+        case 2:
+            color = 'var(--player3-light)'; break;
+        case 3:
+            color = 'var(--player4-light)'; break;
+    }
+    document.body.style.backgroundColor = color;
  }
 
  function updateScoreboard() {
     let scoreBoard = "";
     for (let i = 0; i < playercount; i++) {
-        scoreBoard += "Player " + (i + 1) + ": " + score[i] + " <br>";
+        scoreBoard += `<p ${i == turn ? "style='background-color:white;'" : ""}>Player ` + (i + 1) + ": " + score[i] + "</p> <br>";
     }
     document.getElementById('scoreValue').innerHTML = scoreBoard;
 }

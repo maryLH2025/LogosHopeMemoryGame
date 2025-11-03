@@ -3,6 +3,10 @@
     --player2: rgb(95, 134, 36);
     --player3: #ffe226;
     --player4: rgb(147, 40, 147);
+    --player1-light: #ff6f6f;
+    --player2-light: #c3e88d;
+    --player3-light: #fff48f;
+    --player4-light: #e29ff2;
 }
 
 #gameboard {
@@ -54,6 +58,10 @@
     text-align: center;
     margin-top: 20px;
     font-size: 18px;
+}
+
+#scoreValue p {
+    display: inline;
 }
 body {
     font-family: Arial, sans-serif;
