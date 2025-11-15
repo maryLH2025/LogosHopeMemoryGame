@@ -1,20 +1,23 @@
-  
 
-window.onload = function() {
-    const cards = document.querySelectorAll('.card');
-    console.log(cards);
-    cards.forEach(card => card.addEventListener('click', flipCard));
-    mixcards();
-}
 function mixcards() {
     const container = document.getElementById('gameboard');
-    const cards = Array.from(container.children);
-    for (let i = cards.length - 1; i > 0; i--) {
+    let cards = Array.from(container.children);
+
+    console.log('Total cards before adjustment: ' + cards.length);
+    cards = cards.splice(0, totalCards);
+    console.log('Total cards after adjustment: ' + cards.length);
+
+    container.innerHTML = "";
+
+    for (let i = cards.length - 1; i >= 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         container.appendChild(cards[j]);
         cards.splice(j, 1);
     }
+
 }
+
+totalCards = 32;
 selectedQuestions = [];
 currentQuestionIndex = 0;
 correctAnswersCount = 0;    
@@ -92,4 +95,31 @@ function notsamecard() {
         scoreBoard += `<p ${i == turn ? "style='background-color:white;'" : ""}>Player ` + (i + 1) + ": " + score[i] + "</p> <br>";
     }
     document.getElementById('scoreValue').innerHTML = scoreBoard;
+}
+function setplayercount(count) { 
+    playercount = count;
+    console.log('Player count set to: ' + playercount);
+}
+
+function setDifficulty(level) {
+    switch (level) {
+        case 'easy':
+            totalCards = 8; break;
+        case 'medium':
+            totalCards = 16; break;
+        case 'hard':
+            totalCards = 32; break;
+    }
+    console.log('Difficulty set to: ' + level + ' with ' + totalCards + ' cards.');
+}
+
+function startGame() {
+    const cards = document.querySelectorAll('.card');
+    console.log(cards);
+    cards.forEach(card => card.addEventListener('click', flipCard));
+    document.getElementById('game').style.display = 'block';
+    document.getElementById('gameSelect').style.display = 'none';
+    mixcards();
+    updateScoreboard();
+    nextturn();
 }

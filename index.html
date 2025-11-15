@@ -8,7 +8,24 @@
 </head>
 <body>
     <h1>Logos Hope Memory</h1>
-    <div>
+    <div id="gameSelect">
+        <label for="playerSelect">Player count:</label>
+        <select id="playerSelect" onchange="setplayercount(this.value); ">
+            <option value="1">1 Player</option>
+            <option value="2">2 Player</option>
+            <option value="3">3 Player</option>
+            <option value="4">4 Player</option>
+        </select>
+        <label for="difficultySelect">Difficulty:</label>
+        <select id="difficultySelect" onchange="setDifficulty(this.value); ">
+            <option value="easy">Easy (4 Pairs)</option>
+            <option value="medium">Middle (8 Pairs)</option>
+            <option value="hard">Hard (16 Pairs)</option>
+            <option value="extreme">Extreme (16 Pairs + Time limit)</option>
+        </select>
+        <button onclick="startGame(); ">Start Game</button>
+    </div>
+    <div id="game">
         <div id="score">
             <h2>Scoreboard</h2>
             <span id="scoreValue"></span>
@@ -16,36 +33,36 @@
         <div id="gameboard">
             <div class="card" id="pair01" data-name="card1"><img src="image/Anker.jpg" alt="Bild"></div>
             <div class="card" id="pair0101" data-name="card2"><img src="image/Anker.jpg" alt="Bild"></div>
+            <div class="card" id="pair05" data-name="card9"><img src="image/Herz.jpg" alt="Bild"></div>
+            <div class="card" id="pair0505" data-name="card10"><img src="image/Herz.jpg" alt="Bild"></div>
             <div class="card" id="pair02" data-name="card3"><img src="image/Schiff .jpg" alt="Bild"></div>
             <div class="card" id="pair0202" data-name="card4"><img src="image/Schiff .jpg" alt="Bild"></div>              
             <div class="card" id="pair03" data-name="card5"><img src="image/Bibel.jpg" alt="Bild"></div>
             <div class="card" id="pair0303" data-name="card6"><img src="image/Bibel.jpg" alt="Bild"></div>
             <div class="card" id="pair04" data-name="card7"><img src="image/Hand.jpg" alt="Bild"></div>
             <div class="card" id="pair0404" data-name="card8"><img src="image/Hand.jpg" alt="Bild"></div>
-            <div class="card" id="pair05" data-name="card9"><img src="image/Herz.jpg" alt="Bild"></div>
-            <div class="card" id="pair0505" data-name="card10"><img src="image/Herz.jpg" alt="Bild"></div>
-            <div class="card" id="pair06" data-name="card11"><img src="image/Knowleged.jpg" alt="Bild"></div>
-            <div class="card" id="pair0606" data-name="card12"><img src="image/Knowleged.jpg" alt="Bild"></div>
-            <div class="card" id="pair07" data-name="card13"><img src="image/hope.jpg" alt="Bild"></div>
-            <div class="card" id="pair0707" data-name="card14"><img src="image/hope.jpg" alt="Bild"></div>
             <div class="card" id="pair08" data-name="card15"><img src="image/Rettungsring.jpg" alt="Bild"></div>
             <div class="card" id="pair0808" data-name="card16"><img src="image/Rettungsring.jpg" alt="Bild"></div>
             <div class="card" id="pair09" data-name="card17"><img src="image/taube.jpg" alt="Bild"></div>
             <div class="card" id="pair0909" data-name="card18"><img src="image/taube.jpg"  alt="Bild"></div>
-            <div class="card" id="pair10" data-name="card19"><img src="image/rettungsboat.jpg" alt="Bild"></div>
-            <div class="card" id="pair1010" data-name="card20"><img src="image/rettungsboat.jpg" alt="Bild"></div>              
-            <div class="card" id="pair11" data-name="card21"><img src="image/lifejacket.jpg" alt="Bild"></div>
-            <div class="card" id="pair1111" data-name="card22"><img src="image/lifejacket.jpg" alt="Bild"></div>
             <div class="card" id="pair12" data-name="card23"><img src="image/menschen.jpg" alt="Bild"></div>
             <div class="card" id="pair1212" data-name="card24"><img src="image/menschen.jpg" alt="Bild"></div>
             <div class="card" id="pair13" data-name="card25"><img src="image/Books.jpg" alt="Bild"></div>
             <div class="card" id="pair1313" data-name="card26"><img src="image/Books.jpg" alt="Bild"></div>
             <div class="card" id="pair14" data-name="card27"><img src="image/globe.jpg" alt="Bild"></div>
             <div class="card" id="pair1414" data-name="card28"><img src="image/globe.jpg" alt="Bild"></div>
-            <div class="card" id="pair15" data-name="card29"><img src="image/Help.jpg" alt="Bild"></div>
-            <div class="card" id="pair1515" data-name="card30"><img src="image/Help.jpg" alt="Bild"></div>
             <div class="card" id="pair16" data-name="card31"><img src="image/hands.jpg" alt="Bild"></div>
             <div class="card" id="pair1616" data-name="card32"><img src="image/hands.jpg" alt="Bild"></div>
+            <div class="card" id="pair10" data-name="card19"><img src="image/rettungsboat.jpg" alt="Bild"></div>
+            <div class="card" id="pair1010" data-name="card20"><img src="image/rettungsboat.jpg" alt="Bild"></div>              
+            <div class="card" id="pair11" data-name="card21"><img src="image/lifejacket.jpg" alt="Bild"></div>
+            <div class="card" id="pair1111" data-name="card22"><img src="image/lifejacket.jpg" alt="Bild"></div>
+            <div class="card" id="pair15" data-name="card29"><img src="image/Help.jpg" alt="Bild"></div>
+            <div class="card" id="pair1515" data-name="card30"><img src="image/Help.jpg" alt="Bild"></div>
+            <div class="card" id="pair06" data-name="card11"><img src="image/Knowleged.jpg" alt="Bild"></div>
+            <div class="card" id="pair0606" data-name="card12"><img src="image/Knowleged.jpg" alt="Bild"></div>
+            <div class="card" id="pair07" data-name="card13"><img src="image/hope.jpg" alt="Bild"></div>
+            <div class="card" id="pair0707" data-name="card14"><img src="image/hope.jpg" alt="Bild"></div>
         </div>  
     </div>
 </body>
